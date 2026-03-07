@@ -1,0 +1,7 @@
+{
+  "name": "aivibedigest-site",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-site.js"
+  }
+}
