@@ -3,12 +3,216 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Vibe Digest</title>
-  <meta name="description" content="Ежедневный AI-дайджест: модели, релизы, исследования и инструменты." />
+  <title>AI Vibe Digest — ежедневный AI-дайджест в Telegram</title>
+  <meta name="description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.34);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: min(100%, 920px);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -80px auto auto -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(125,92,255,.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: .96;
+      letter-spacing: -.05em;
+      max-width: 9ch;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 42ch;
+      color: var(--muted);
+      font-size: clamp(17px, 2.2vw, 20px);
+      line-height: 1.55;
+    }
+
+    .sub {
+      margin: 22px 0 0;
+      color: #d8e3fa;
+      font-size: 15px;
+      max-width: 56ch;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+    }
+
+    .mini {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #e8efff;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 760px) {
+      .card { padding: 26px; border-radius: 22px; }
+      .mini { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <h1>AI Vibe Digest</h1>
-  <p>Ежедневный AI-дайджест: модели, релизы, исследования и инструменты.</p>
-  <p><a href="https://t.me/ТВОЙ_КАНАЛ">Открыть Telegram-канал</a></p>
+  <main class="shell">
+    <section class="card">
+      <div class="brand">
+        <span class="mark">AI</span>
+        <span>AI Vibe Digest</span>
+      </div>
+
+      <h1>AI-дайджест без шума</h1>
+
+      <p class="lead">
+        Ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты — коротко и по делу.
+      </p>
+
+      <p class="sub">
+        AI Vibe Digest помогает быстро понять, что произошло в мире AI за день, без ручного чтения десятков источников.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Открыть Telegram-паблик</a>
+        <a class="btn btn-secondary" href="mailto:hello@aivibedigest.com">Связаться</a>
+      </div>
+
+      <div class="mini">
+        <div class="mini-card">
+          <strong>Каждый день</strong>
+          <span>Один короткий выпуск с главными AI-новостями.</span>
+        </div>
+        <div class="mini-card">
+          <strong>Без мусора</strong>
+          <span>Только важные модели, исследования, релизы и инструменты.</span>
+        </div>
+        <div class="mini-card">
+          <strong>Удобный формат</strong>
+          <span>Сначала суть, потом подробности — прямо в Telegram.</span>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
