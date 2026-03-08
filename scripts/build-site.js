@@ -4,6 +4,8 @@ const issues = require("../data/issues");
 
 const ROOT = path.resolve(__dirname, "..");
 const SITE_URL = "https://www.aivibedigest.com";
+const ALTERNATE_SITE_URLS = ["https://aivibedigest.com"];
+const SITE_HOST = new URL(SITE_URL).host;
 const TELEGRAM_URL = "https://t.me/+hEB8EhqtRfoyYjZi";
 
 const sortedIssues = [...issues].sort((a, b) => b.date.localeCompare(a.date));
@@ -24,6 +26,15 @@ function writeFile(relativePath, content) {
 
 function issueUrl(issue) {
   return `/digest/${issue.slug}/`;
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
 }
 
 function renderHomePage() {
@@ -833,16 +844,21 @@ ${blocksMarkup}
 }
 
 function renderSitemap() {
-  const pageUrls = [
-    `${SITE_URL}/`,
-    `${SITE_URL}/digest/`,
-    ...sortedIssues.map((issue) => `${SITE_URL}${issueUrl(issue)}`),
+  const latestIssueDate = sortedIssues[0]?.date;
+  const pages = [
+    { url: `${SITE_URL}/`, lastmod: latestIssueDate },
+    { url: `${SITE_URL}/digest/`, lastmod: latestIssueDate },
+    ...sortedIssues.map((issue) => ({
+      url: `${SITE_URL}${issueUrl(issue)}`,
+      lastmod: issue.date,
+    })),
   ];
 
-  const body = pageUrls
+  const body = pages
     .map(
-      (url) => `  <url>
-    <loc>${url}</loc>
+      ({ url, lastmod }) => `  <url>
+    <loc>${escapeXml(url)}</loc>${lastmod ? `
+    <lastmod>${lastmod}</lastmod>` : ""}
   </url>`
     )
     .join("\n");
@@ -851,6 +867,19 @@ function renderSitemap() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${body}
 </urlset>
+`;
+}
+
+function renderRobotsTxt() {
+  const sitemapUrls = [SITE_URL, ...ALTERNATE_SITE_URLS].map(
+    (baseUrl) => `${baseUrl}/sitemap.xml`
+  );
+
+  return `User-agent: *
+Allow: /
+Host: ${SITE_HOST}
+
+${sitemapUrls.map((url) => `Sitemap: ${url}`).join("\n")}
 `;
 }
 
@@ -891,6 +920,7 @@ function build() {
   writeFile("index.html", renderHomePage());
   writeFile("digest/index.html", renderArchivePage());
   writeFile("sitemap.xml", renderSitemap());
+  writeFile("robots.txt", renderRobotsTxt());
 
   for (const issue of sortedIssues) {
     writeFile(path.join("digest", issue.slug, "index.html"), renderIssuePage(issue));

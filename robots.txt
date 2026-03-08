@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Host: www.aivibedigest.com
 
 Sitemap: https://www.aivibedigest.com/sitemap.xml
+Sitemap: https://aivibedigest.com/sitemap.xml
