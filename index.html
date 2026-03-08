@@ -6,7 +6,11 @@
   <title>AI Vibe Digest — ежедневный AI-дайджест в Telegram</title>
   <meta name="description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
   <meta name="theme-color" content="#0b1020" />
-  <meta name="yandex-verification" content="63d62341f62e6cb1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <style>
     :root {
       --bg: #07111f;
@@ -178,7 +182,7 @@
 
     .latest-list {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -201,9 +205,16 @@
 
     .issue-link strong {
       display: block;
+      margin-bottom: 8px;
       font-size: 18px;
       line-height: 1.25;
       letter-spacing: -.02em;
+    }
+
+    .issue-link span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .mini-card {
@@ -248,7 +259,7 @@
         <span>AI Vibe Digest</span>
       </div>
 
-      <h1>AI-дайджест</h1>
+      <h1>AI-дайджест без шума</h1>
 
       <p class="lead">
         Ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты — коротко и по делу.
@@ -285,16 +296,14 @@
         </div>
 
         <div class="latest-list">
-          <a class="issue-link" href="/digest/2026-03-07/">
-            <strong>7 марта</strong>
+          <a class="issue-link" href="/digest/2026-03-07-phi4-openai-audio-lightricks/">
+            <strong>7 марта 2026: Phi-4, OpenAI audio и LTX Desktop</strong>
+            <span>Мультимодальная Phi-4, двунаправленное аудио OpenAI, локальный видеоредактор Lightricks и эксперименты с FPGA и живыми нейронами.</span>
           </a>
 
-          <a class="issue-link" href="/digest/2026-03-06/">
-            <strong>6 марта</strong>
-          </a>
-
-          <a class="issue-link" href="/digest/2026-03-05/">
-            <strong>5 марта</strong>
+          <a class="issue-link" href="/digest/2026-03-06-codex-security-cursor-excel/">
+            <strong>6 марта 2026: Codex Security, Cursor и ChatGPT в Excel</strong>
+            <span>Codex Security, Cursor Automations, ChatGPT в Excel и новые данные о том, как далеко AI уже может зайти в автоматизации инженерных задач.</span>
           </a>
         </div>
       </section>

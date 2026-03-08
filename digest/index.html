@@ -6,6 +6,11 @@
   <title>Архив AI Vibe Digest — ежедневные AI-дайджесты</title>
   <meta name="description" content="Архив AI Vibe Digest: ежедневные AI-дайджесты про модели, исследования, релизы и инструменты с переходом на каждый выпуск." />
   <meta name="theme-color" content="#0b1020" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <style>
     :root {
       --bg: #07111f;
@@ -117,31 +122,42 @@
     }
 
     .archive-item {
-      display: block;
+      display: grid;
+      gap: 10px;
       padding: 22px;
       border-radius: 20px;
       background: var(--panel-strong);
       border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .archive-item time {
+      color: #c8d7f5;
+      font-size: 14px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .archive-item a {
       color: var(--text);
       font-size: 24px;
       line-height: 1.2;
       letter-spacing: -.03em;
       text-decoration: none;
       font-weight: 700;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    .archive-item:hover {
-      transform: translateY(-1px);
-      border-color: rgba(97,168,255,.4);
-      background: rgba(255,255,255,.1);
+    .archive-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 62ch;
     }
 
     @media (max-width: 760px) {
       .frame { padding: 24px; }
       .topbar { display: block; }
       .top-links { margin-top: 16px; }
-      .archive-item { font-size: 21px; }
+      .archive-item a { font-size: 21px; }
     }
   </style>
 </head>
@@ -168,9 +184,17 @@
       </div>
 
       <section class="archive-list" aria-label="Список выпусков">
-        <a class="archive-item" href="/digest/2026-03-07/">7 марта</a>
-        <a class="archive-item" href="/digest/2026-03-06/">6 марта</a>
-        <a class="archive-item" href="/digest/2026-03-05/">5 марта</a>
+        <article class="archive-item">
+          <time datetime="2026-03-07">7 марта 2026</time>
+          <a href="/digest/2026-03-07-phi4-openai-audio-lightricks/">Дайджест за 7 марта 2026: Phi-4, OpenAI audio и LTX Desktop</a>
+          <p>Мультимодальная модель от Microsoft, аудиосистема OpenAI, локальный видеоредактор Lightricks, LLM на FPGA и биокомпьютинг с нейронами, играющими в Doom.</p>
+        </article>
+
+        <article class="archive-item">
+          <time datetime="2026-03-06">6 марта 2026</time>
+          <a href="/digest/2026-03-06-codex-security-cursor-excel/">Дайджест за 6 марта 2026: Codex Security, Cursor и ChatGPT в Excel</a>
+          <p>Выпуск про AI-безопасность, автоматизации Cursor, ChatGPT в Excel, цифры Anthropic по автоматизации задач и практику внедрения AI в бизнес и обучение.</p>
+        </article>
       </section>
     </section>
   </main>
