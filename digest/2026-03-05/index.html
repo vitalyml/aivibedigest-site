@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 марта — AI Vibe Digest</title>
+  <meta name="description" content="AI Vibe Digest за 5 марта 2026: GPT-5.4, оркестратор Symphony, skill-creator, Cursor решает математику, Semantic Tube Prediction." />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #d3def7;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin: 28px 0;
+    }
+
+    .more-label {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tags {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame { padding: 24px; }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <span class="eyebrow">5 марта</span>
+
+      <ul class="summary">
+        <li>OpenAI анонсирует GPT-5.4 с экстремальным режимом рассуждений и контекстом в 1 млн токенов.</li>
+        <li>Вышли новые инструменты для создания AI-агентов: оркестратор Symphony и улучшенный skill-creator.</li>
+        <li>Агент Cursor автономно решил сложную математическую задачу, найдя лучшее решение.</li>
+        <li>Представлены методы для улучшения LLM: Semantic Tube Prediction и архитектура памяти для роботов.</li>
+        <li>ИИ-генераторы упрощают создание 3D-моделей и видеоконтента.</li>
+      </ul>
+
+      <hr class="divider">
+
+      <p class="more-label">Подробнее</p>
+
+      <div class="blocks">
+        <section class="block">
+          <h3>🧠 Модели и бенчмарки</h3>
+          <p>addmeto рассказывает о слухах про GPT-5.4 от OpenAI. Модель получит контекстное окно в 1 миллион токенов и экстремальный режим рассуждений для долгих многошаговых задач.</p>
+          <p>Machinelearning сообщает, что Y Combinator 25 марта проведет запуск ARC-AGI 3 — обновленного строгого теста на абстрактное мышление для ИИ, который поможет измерить прогресс к AGI.</p>
+        </section>
+
+        <section class="block">
+          <h3>🛠️ Инструменты для разработки AI</h3>
+          <p>Tips AI | IT  AI опубликовал информацию о Symphony от OpenAI — системе-оркестраторе, которая автоматически распределяет задачи из проектных досок между AI-агентами.</p>
+          <p>Machinelearning анализирует обновление skill-creator от Anthropic. Теперь создатели навыков могут запускать автотесты и A/B-сравнения, чтобы измерить эффективность навыка до его запуска.</p>
+          <p>Tips AI | IT  AI рассказывает о выходе Codex десктоп для Windows с песочницей, где агенты могут безопасно выполнять код в PowerShell.</p>
+          <p>Мысли вслух делится опытом использования OpenClaw — платформы для создания персонального AI-ассистента, который интегрирует множество инструментов в единый контекст.</p>
+        </section>
+
+        <section class="block">
+          <h3>🔬 Исследования и приложения</h3>
+          <p>Data Secrets сообщает, что агент Cursor за четыре дня автономной работы решил одну из сложных математических задач First Proof challenge, найдя улучшенное доказательство.</p>
+          <p>gonzo-обзоры ML статей разбирает исследование Semantic Tube Prediction — метод, который позволяет LLM обучаться в 16 раз эффективнее, заставляя скрытые состояния двигаться по плавным траекториям.</p>
+          <p>Machinelearning рассказывает о разработке Physical Intelligence: архитектура Multi-scale Embodied Memory для роботов решает проблему потери контекста в длинных задачах.</p>
+          <p>Machinelearning также сообщает о Wonder 3D от Autodesk — ИИ-генераторе 3D-моделей по текстовому промпту, и о Cinematic Video Overviews в NotebookLM от Google, который создает анимированные видео из документов.</p>
+        </section>
+      </div>
+
+      <p class="tags">#ai #агенты #исследования</p>
+
+      <section aria-labelledby="cta-title">
+        <div class="cta">
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

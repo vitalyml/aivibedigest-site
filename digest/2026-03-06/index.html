@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6 марта — AI Vibe Digest</title>
+  <meta name="description" content="AI Vibe Digest за 6 марта 2026: Phi-4, двунаправленная аудиомодель OpenAI, LTX Desktop, LLM на FPGA и нейроны, играющие в Doom." />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #d3def7;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin: 28px 0;
+    }
+
+    .more-label {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tags {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame { padding: 24px; }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <span class="eyebrow">6 марта</span>
+
+      <ul class="summary">
+        <li>Microsoft выпустила мультимодальную Phi-4 — модель адаптирует глубину рассуждений под сложность задачи.</li>
+        <li>OpenAI разрабатывает двунаправленную аудиомодель — она сможет перебивать и перестраивать ответ на лету.</li>
+        <li>Lightricks открыла локальный видеоредактор с ИИ — позволяет перегенерировать фрагменты видео на таймлайне.</li>
+        <li>ИИ-модель теперь можно зашить прямо в микросхему — эксперимент с LLM на FPGA показывает возможности аппаратного ускорения.</li>
+        <li>Живые нейроны человека научили играть в Doom — они реагируют быстрее GPT-4, а платформа доступна в облаке.</li>
+      </ul>
+
+      <hr class="divider">
+
+      <p class="more-label">Подробнее</p>
+
+      <div class="blocks">
+        <section class="block">
+          <h3>📱 Модели и релизы</h3>
+          <p>Machinelearning рассказывает о выпуске Microsoft мультимодальной модели Phi-4. Она умеет автоматически переключаться между глубоким анализом для сложных вопросов и быстрым ответом на простые, а также понимает интерфейсы на скриншотах, что полезно для создания ИИ-агентов.</p>
+          <p>В том же обзоре сообщается о разработке OpenAI двунаправленной аудиомодели. Система обрабатывает звук непрерывно и может естественно перебивать или менять ответ, если пользователь перехватил инициативу, что критично для голосовых ассистентов.</p>
+          <p>Machinelearning также анонсирует выход локального видеоредактора LTX Desktop от Lightricks. Он совмещает классический монтаж с генерацией видео из текста и позволяет точечно переделывать неудачные фрагменты прямо на таймлайне, используя открытую модель LTX-2.3.</p>
+          <p>Machinelearning сообщает об открытом релизе Green-VLA от Сбера — модели для управления роботами. Она понимает команды на естественном языке и может быть дообучена для конкретных задач, например, на складе.</p>
+        </section>
+
+        <section class="block">
+          <h3>💡 Исследования и методы</h3>
+          <p>Machinelearning разбирает метод Self-Flow от Black Forest Labs, который учит диффузионные модели генерировать изображения, видео и звук без помощи внешних энкодеров. Подход улучшает качество при масштабировании и работает для разных типов данных.</p>
+          <p>Data Secrets анализирует исследование Google, где LLM научили байесовскому мышлению — способности обновлять свои убеждения при поступлении новых данных. Модель переняла эту логику и начала применять её даже в задачах, на которых не обучалась.</p>
+          <p>gonzo-обзоры ML статей рассказывает о теории, объясняющей, почему в языковых моделях возникают упорядоченные структуры (вроде круга месяцев). Оказалось, это следствие статистики совместного появления слов в данных, а не хитрости архитектуры.</p>
+        </section>
+
+        <section class="block">
+          <h3>🛠️ Инструменты и разработка</h3>
+          <p>Tips AI | IT  AI рекомендует инструмент llmfit, который одной командой оценивает, какие LLM запустятся на вашем компьютере. Он анализирует железо и подбирает подходящую квантизацию модели для баланса скорости и качества.</p>
+          <p>Тимур Хахалев про AI Coding делится типичными проблемами при внедрении ИИ в программирование: отсутствие тестов и линтеров, а также нежелание доверять сложные задачи агенту. Ключ к успеху — перестроить процесс под сильные стороны ИИ.</p>
+        </section>
+
+        <section class="block">
+          <h3>⚙️ Аппаратное ускорение и биокомпьютинг</h3>
+          <p>Love. Death. Transformers. рассказывает о проекте, где небольшую языковую модель (~854K параметров) удалось целиком разместить в микросхеме FPGA. Это эксперимент по аппаратному ускорению ИИ, который показывает, как можно экономить ресурсы.</p>
+          <p>Machinelearning сообщает, что австралийская Cortical Labs научила выращенные из человеческих клеток нейроны играть в Doom. Эта биологическая система реагировала быстрее GPT-4, а теперь компания предлагает облачный доступ к своей платформе для исследований.</p>
+        </section>
+      </div>
+
+      <p class="tags">#ai #инструменты #исследования</p>
+
+      <section aria-labelledby="cta-title">
+        <div class="cta">
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7 марта — AI Vibe Digest</title>
+  <meta name="description" content="AI Vibe Digest за 7 марта 2026: OpenAI Codex Security, ChatGPT в Excel, Cursor Automations и данные Anthropic об автоматизации." />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #d3def7;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin: 28px 0;
+    }
+
+    .more-label {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tags {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame { padding: 24px; }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <span class="eyebrow">7 марта</span>
+
+      <ul class="summary">
+        <li>OpenAI выпустила Codex Security — ИИ-агент сам ищет уязвимости, проверяет их и пишет патчи.</li>
+        <li>ChatGPT встроили в Excel — модель строит финансовые отчёты, подтягивая данные из Bloomberg и других источников.</li>
+        <li>Cursor представил платформу Automations — агенты запускаются по событиям в Git или Slack и имеют память.</li>
+        <li>Anthropic показала данные об автоматизации — ИИ может выполнять 94% задач программистов, но используется только треть.</li>
+      </ul>
+
+      <hr class="divider">
+
+      <p class="more-label">Подробнее</p>
+
+      <div class="blocks">
+        <section class="block">
+          <h3>📱 Инструменты и платформы</h3>
+          <p>Machinelearning рассказывает о новом инструменте OpenAI Codex Security. Это ИИ-агент, который анализирует архитектуру проекта, строит модель угроз и самостоятельно проверяет уязвимости, разворачивая изолированную копию системы. При подтверждении проблемы он сам пишет и тестирует патч. Инструмент скоро станет доступен пользователям корпоративных тарифов ChatGPT.</p>
+          <p>Machinelearning также сообщает о платформе Automations от Cursor. Агенты теперь могут запускаться автоматически по событиям в Git, Slack или других системах, брать на себя целые инженерные процессы и запоминать результаты прошлых выполнений, адаптируясь к проекту.</p>
+          <p>По информации Machinelearning, OpenAI встроила ChatGPT прямо в Excel. Аддон на базе GPT-5.4 умеет строить финансовые модели, обновлять формулы и объяснять изменения. Модель подключена к данным Bloomberg, Moody's и других провайдеров, что позволяет работать с актуальной информацией без ручного копирования.</p>
+        </section>
+
+        <section class="block">
+          <h3>🚀 Тренды и аналитика</h3>
+          <p>Machinelearning отмечает стремительный рост аудитории Claude — более миллиона новых пользователей ежедневно. Это связано как с общим трендом на ИИ, так и с репутационными преимуществами Anthropic после скандала вокруг OpenAI и Пентагона.</p>
+          <p>e/acc делится данными от Anthropic о «наблюдаемом покрытии» задач ИИ. Для программистов теоретическая автоматизация достигает 94%, но реально используется только 33%. В офисных и административных функциях покрытие — 90%, что указывает на огромный потенциал для внедрения.</p>
+          <p>Адель и МЛь размышляет о феномене «вайбкодинга» — когда разработчики полностью полагаются на агентов для написания кода. Это меняет рынок труда: продуктовое видение начинает цениться выше технических навыков, а в корпорациях постепенно внедряются аналогичные практики.</p>
+          <p>Machinelearning подводит итоги хакатона World Labs, посвященного 3D-модели Marble. Участники создавали симуляторы для роботов, интерфейсы дополненной реальности и инструменты для недвижимости, получая менторство от Фей-Фей Ли и поддержку от Autodesk.</p>
+        </section>
+
+        <section class="block">
+          <h3>💡 Бизнес и образование</h3>
+          <p>Тимур Хахалев про AI Coding разбирает статью OpenAI о пяти ценностных моделях ИИ для бизнеса. Ключевая мысль: ИИ — не просто набор фич, а новая модель дистрибуции, управления изменениями и в итоге — новый способ ведения бизнеса. Важно переходить от пилотов к системному внедрению.</p>
+          <p>Data Sanity Talks анонсирует курс «Intro to AI Agents» с менторами из Microsoft, Wizium.ai и InDrive. Регистрация открыта до 8 марта, уже подано более 100 заявок.</p>
+        </section>
+      </div>
+
+      <p class="tags">#ai #инструменты #автоматизация</p>
+
+      <section aria-labelledby="cta-title">
+        <div class="cta">
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>
