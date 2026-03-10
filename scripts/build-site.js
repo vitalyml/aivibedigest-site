@@ -896,6 +896,21 @@ ${renderSectionBody(section.body)}
       line-height: 1.7;
     }
 
+    .block p a,
+    .block p a:visited {
+      color: #9fd0ff;
+      font-weight: 600;
+      text-decoration-color: rgba(159,208,255,.7);
+      text-underline-offset: 0.12em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    .block p a:hover,
+    .block p a:focus-visible {
+      color: #dff1ff;
+      text-decoration-color: currentColor;
+    }
+
     .block p + p {
       margin-top: 16px;
     }
