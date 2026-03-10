@@ -7,6 +7,7 @@ const SITE_URL = "https://www.aivibedigest.com";
 const ALTERNATE_SITE_URLS = ["https://aivibedigest.com"];
 const SITE_HOST = new URL(SITE_URL).host;
 const TELEGRAM_URL = "https://t.me/+hEB8EhqtRfoyYjZi";
+const ALLOWED_INLINE_TAGS = new Set(["a", "b", "strong", "i", "em", "code", "br"]);
 
 const sortedIssues = [...issues].sort((a, b) => b.date.localeCompare(a.date));
 
@@ -37,9 +38,145 @@ function escapeXml(value) {
     .replaceAll("'", "&apos;");
 }
 
+function extractHref(attributesSource) {
+  const attributePattern = /([a-zA-Z][\w:-]*)\s*=\s*("([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g;
+  let match;
+
+  while ((match = attributePattern.exec(attributesSource)) !== null) {
+    if (match[1].toLowerCase() !== "href") {
+      continue;
+    }
+
+    return match[3] ?? match[4] ?? match[5] ?? "";
+  }
+
+  return null;
+}
+
+function sanitizeAnchorHref(href) {
+  if (typeof href !== "string") {
+    return null;
+  }
+
+  const normalizedHref = href.trim();
+
+  if (!normalizedHref) {
+    return null;
+  }
+
+  try {
+    const url = new URL(normalizedHref);
+
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return null;
+    }
+
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+function sanitizeInlineHtml(value) {
+  const source = String(value);
+  const tagPattern = /<\/?([a-zA-Z][\w:-]*)([^>]*)>/g;
+  const openTags = [];
+  let result = "";
+  let cursor = 0;
+  let match;
+
+  while ((match = tagPattern.exec(source)) !== null) {
+    const [rawTag, rawName, rawAttributes] = match;
+    const tagName = rawName.toLowerCase();
+    const isClosingTag = rawTag.startsWith("</");
+
+    result += escapeHtml(source.slice(cursor, match.index));
+
+    if (!ALLOWED_INLINE_TAGS.has(tagName)) {
+      result += escapeHtml(rawTag);
+      cursor = tagPattern.lastIndex;
+      continue;
+    }
+
+    if (tagName === "br") {
+      result += isClosingTag ? escapeHtml(rawTag) : "<br>";
+      cursor = tagPattern.lastIndex;
+      continue;
+    }
+
+    if (tagName === "a") {
+      if (isClosingTag) {
+        const lastAnchorIndex = openTags.lastIndexOf("a");
+
+        if (lastAnchorIndex === -1) {
+          result += escapeHtml(rawTag);
+        } else {
+          openTags.splice(lastAnchorIndex, 1);
+          result += "</a>";
+        }
+
+        cursor = tagPattern.lastIndex;
+        continue;
+      }
+
+      const safeHref = sanitizeAnchorHref(extractHref(rawAttributes));
+      if (safeHref) {
+        openTags.push("a");
+        result += `<a href="${escapeHtml(safeHref)}" target="_blank" rel="noopener noreferrer">`;
+      } else {
+        result += escapeHtml(rawTag);
+      }
+
+      cursor = tagPattern.lastIndex;
+      continue;
+    }
+
+    if (isClosingTag) {
+      const lastTagIndex = openTags.lastIndexOf(tagName);
+
+      if (lastTagIndex === -1) {
+        result += escapeHtml(rawTag);
+      } else {
+        openTags.splice(lastTagIndex, 1);
+        result += `</${tagName}>`;
+      }
+    } else {
+      openTags.push(tagName);
+      result += `<${tagName}>`;
+    }
+
+    cursor = tagPattern.lastIndex;
+  }
+
+  result += escapeHtml(source.slice(cursor));
+  return result;
+}
+
+function renderSectionBody(body) {
+  const paragraphs = String(body)
+    .split(/\r?\n\s*\r?\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  return paragraphs
+    .map((paragraph) => `            <p>${sanitizeInlineHtml(paragraph)}</p>`)
+    .join("\n");
+}
+
+function getTelegramPostUrl(issue) {
+  const candidate =
+    issue.telegramPostUrl ??
+    issue.telegramUrl ??
+    issue.postUrl ??
+    issue.telegramPostLink ??
+    null;
+
+  return sanitizeAnchorHref(candidate);
+}
+
 function renderHomePage() {
   const latestMarkup = sortedIssues
-    .slice(0, 2)
+    .slice(0, 3)
     .map(
       (issue) => `          <a class="issue-link" href="${issueUrl(issue)}">
             <strong>${escapeHtml(issue.latestTitle)}</strong>
@@ -309,7 +446,7 @@ function renderHomePage() {
         <span>AI Vibe Digest</span>
       </div>
 
-      <h1>AI-дайджест без шума</h1>
+      <h1>AI-дайджест</h1>
 
       <p class="lead">
         Ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты — коротко и по делу.
@@ -563,6 +700,7 @@ ${archiveItemsMarkup}
 }
 
 function renderIssuePage(issue) {
+  const telegramPostUrl = getTelegramPostUrl(issue);
   const ledeMarkup = issue.lede
     .map((paragraph) => `        <p>${escapeHtml(paragraph)}</p>`)
     .join("\n");
@@ -573,7 +711,7 @@ function renderIssuePage(issue) {
     .map(
       (section) => `          <section class="block">
             <h3>${escapeHtml(section.title)}</h3>
-            <p>${escapeHtml(section.body)}</p>
+${renderSectionBody(section.body)}
           </section>`
     )
     .join("\n\n");
@@ -758,6 +896,10 @@ function renderIssuePage(issue) {
       line-height: 1.7;
     }
 
+    .block p + p {
+      margin-top: 16px;
+    }
+
     .cta {
       display: flex;
       flex-wrap: wrap;
@@ -826,6 +968,7 @@ ${blocksMarkup}
       <section aria-labelledby="cta-title">
         <h2 id="cta-title">Продолжение</h2>
         <div class="cta">
+          ${telegramPostUrl ? `<a class="nav-link" href="${escapeHtml(telegramPostUrl)}" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>` : ""}
           <a class="primary" href="${TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
           <a href="/digest/">Перейти в архив AI Vibe Digest</a>
         </div>
@@ -927,4 +1070,14 @@ function build() {
   }
 }
 
-build();
+if (require.main === module) {
+  build();
+}
+
+module.exports = {
+  build,
+  getTelegramPostUrl,
+  renderIssuePage,
+  renderSectionBody,
+  sanitizeInlineHtml,
+};
