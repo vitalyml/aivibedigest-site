@@ -552,11 +552,12 @@ function renderArchivePage() {
     }
 
     .frame {
-      background: var(--panel);
+      background: rgba(10, 18, 34, 0.82);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 34px;
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
 
@@ -764,11 +765,12 @@ ${renderSectionBody(section.body)}
     }
 
     .frame {
-      background: var(--panel);
+      background: rgba(10, 18, 34, 0.82);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 34px;
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
 
@@ -937,7 +939,12 @@ ${renderSectionBody(section.body)}
     }
 
     @media (max-width: 760px) {
-      .frame { padding: 24px; }
+      .frame {
+        padding: 24px;
+        background: rgba(10, 18, 34, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
       .topbar { display: block; }
       .topbar nav { margin-top: 16px; }
     }
