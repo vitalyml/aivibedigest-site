@@ -186,7 +186,7 @@ function renderHomePage() {
     .map(
       (issue) => `          <a class="issue-link" href="${issueUrl(issue)}">
             <strong>${escapeHtml(issue.latestTitle)}</strong>
-            <span>${issue.summary.slice(0, 3).map(escapeHtml).join("<br>")}</span>
+            <ul class="preview">${issue.summary.slice(0, 3).map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
           </a>`
     )
     .join("\n\n");
@@ -397,11 +397,14 @@ function renderHomePage() {
       letter-spacing: -.02em;
     }
 
-    .issue-link span {
+    .preview {
+      margin: 8px 0 0;
+      padding-left: 18px;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
+    .preview li + li { margin-top: 4px; }
 
     @media (max-width: 760px) {
       .card { padding: 26px; border-radius: 22px; }
@@ -462,7 +465,7 @@ function renderArchivePage() {
       (issue) => `        <article class="archive-item">
           <time datetime="${issue.date}">${escapeHtml(formatHumanDate(issue.date))}</time>
           <a href="${issueUrl(issue)}">${escapeHtml(issue.archiveTitle)}</a>
-          <p>${issue.summary.slice(0, 3).map(escapeHtml).join("<br>")}</p>
+          <ul class="preview">${issue.summary.slice(0, 3).map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
         </article>`
     )
     .join("\n\n");
@@ -616,12 +619,14 @@ function renderArchivePage() {
       font-weight: 700;
     }
 
-    .archive-item p {
-      margin: 0;
+    .archive-item .preview {
+      margin: 8px 0 0;
+      padding-left: 18px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
       max-width: 62ch;
     }
+    .archive-item .preview li + li { margin-top: 4px; }
 
     @media (max-width: 760px) {
       .frame { padding: 24px; }

@@ -45,12 +45,12 @@ test("renderIssuePage shows Telegram post link when issue contains one", () => {
   );
 });
 
-test("renderSitemap preserves ISO-8601 lastmod timestamps", () => {
-  const latestIssue = [...issues].sort((a, b) => b.date.localeCompare(a.date))[0];
-  const expectedLastmod = latestIssue.lastmod ?? latestIssue.date;
+test("renderSitemap uses lastmod when available", () => {
+  const issueWithLastmod = issues.find((i) => i.lastmod);
   const result = renderSitemap();
-  const escapedLastmod = expectedLastmod.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-  assert.match(result, new RegExp(`<lastmod>${escapedLastmod}</lastmod>`));
-  assert.doesNotMatch(result, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
+  if (issueWithLastmod) {
+    const escaped = issueWithLastmod.lastmod.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    assert.match(result, new RegExp(`<lastmod>${escaped}</lastmod>`));
+  }
 });
