@@ -184,10 +184,12 @@ function renderHomePage() {
   const latestMarkup = sortedIssues
     .slice(0, 3)
     .map(
-      (issue) => `          <a class="issue-link" href="${issueUrl(issue)}">
-            <strong>${escapeHtml(issue.latestTitle)}</strong>
+      (issue) => `          <div class="issue-card">
+            <a class="issue-link" href="${issueUrl(issue)}">
+              <strong>${escapeHtml(issue.latestTitle)}</strong>
+            </a>
             <ul class="preview">${issue.summary.slice(0, 3).map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
-          </a>`
+          </div>`
     )
     .join("\n\n");
 
@@ -372,39 +374,41 @@ function renderHomePage() {
       gap: 12px;
     }
 
-    .issue-link {
-      display: block;
+    .issue-card {
       padding: 18px;
       border-radius: 18px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.08);
-      color: inherit;
-      text-decoration: none;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    .issue-link:hover {
+    .issue-card:hover {
       transform: translateY(-1px);
       border-color: rgba(97,168,255,.4);
       background: rgba(255,255,255,.06);
     }
 
+    .issue-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
     .issue-link strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.25;
       letter-spacing: -.02em;
     }
 
     .preview {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       padding-left: 18px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.5;
     }
-    .preview li + li { margin-top: 4px; }
+    .preview li + li { margin-top: 3px; }
 
     @media (max-width: 760px) {
       .card { padding: 26px; border-radius: 22px; }
@@ -605,14 +609,14 @@ function renderArchivePage() {
 
     .archive-item time {
       color: #c8d7f5;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: .02em;
       text-transform: uppercase;
     }
 
     .archive-item a {
       color: var(--text);
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.2;
       letter-spacing: -.03em;
       text-decoration: none;
@@ -620,19 +624,20 @@ function renderArchivePage() {
     }
 
     .archive-item .preview {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       padding-left: 18px;
       color: var(--muted);
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.5;
       max-width: 62ch;
     }
-    .archive-item .preview li + li { margin-top: 4px; }
+    .archive-item .preview li + li { margin-top: 3px; }
 
     @media (max-width: 760px) {
       .frame { padding: 24px; }
       .topbar { display: block; }
       .top-links { margin-top: 16px; }
-      .archive-item a { font-size: 21px; }
+      .archive-item a { font-size: 18px; }
     }
   </style>
 </head>

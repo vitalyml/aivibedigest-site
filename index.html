@@ -179,39 +179,41 @@
       gap: 12px;
     }
 
-    .issue-link {
-      display: block;
+    .issue-card {
       padding: 18px;
       border-radius: 18px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.08);
-      color: inherit;
-      text-decoration: none;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    .issue-link:hover {
+    .issue-card:hover {
       transform: translateY(-1px);
       border-color: rgba(97,168,255,.4);
       background: rgba(255,255,255,.06);
     }
 
+    .issue-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
     .issue-link strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.25;
       letter-spacing: -.02em;
     }
 
     .preview {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       padding-left: 18px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.5;
     }
-    .preview li + li { margin-top: 4px; }
+    .preview li + li { margin-top: 3px; }
 
     @media (max-width: 760px) {
       .card { padding: 26px; border-radius: 22px; }
@@ -256,15 +258,19 @@
         </div>
 
         <div class="latest-list">
-          <a class="issue-link" href="/digest/2026-03-11-digest/">
-            <strong>11 марта 2026: AI Vibe Digest</strong>
+          <div class="issue-card">
+            <a class="issue-link" href="/digest/2026-03-11-digest/">
+              <strong>11 марта 2026: AI Vibe Digest</strong>
+            </a>
             <ul class="preview"><li>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.</li><li>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.</li><li>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</li></ul>
-          </a>
+          </div>
 
-          <a class="issue-link" href="/digest/2026-03-10-digest/">
-            <strong>10 марта 2026: AI Vibe Digest</strong>
+          <div class="issue-card">
+            <a class="issue-link" href="/digest/2026-03-10-digest/">
+              <strong>10 марта 2026: AI Vibe Digest</strong>
+            </a>
             <ul class="preview"><li>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.</li><li>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.</li><li>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</li></ul>
-          </a>
+          </div>
         </div>
       </section>
     </section>
