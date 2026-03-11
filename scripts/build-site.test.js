@@ -1,7 +1,13 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const issues = require("../data/issues");
 
-const { getTelegramPostUrl, renderIssuePage, renderSectionBody } = require("./build-site");
+const {
+  getTelegramPostUrl,
+  renderIssuePage,
+  renderSectionBody,
+  renderSitemap,
+} = require("./build-site");
 
 test("renderSectionBody splits paragraphs and preserves safe links", () => {
   const input = '<a href="https://t.me/test/1">Source</a> первая новость.\n\nВторая новость.';
@@ -18,6 +24,7 @@ test("renderSectionBody splits paragraphs and preserves safe links", () => {
 
 test("renderIssuePage shows Telegram post link when issue contains one", () => {
   const issue = {
+    date: "2026-03-10",
     slug: "test-issue",
     lede: ["Короткий лид."],
     summary: ["Короткое summary."],
@@ -36,4 +43,14 @@ test("renderIssuePage shows Telegram post link when issue contains one", () => {
     result,
     /<a class="nav-link" href="https:\/\/t\.me\/test\/123" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram<\/a>/
   );
+});
+
+test("renderSitemap preserves ISO-8601 lastmod timestamps", () => {
+  const latestIssue = [...issues].sort((a, b) => b.date.localeCompare(a.date))[0];
+  const expectedLastmod = latestIssue.lastmod ?? latestIssue.date;
+  const result = renderSitemap();
+  const escapedLastmod = expectedLastmod.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  assert.match(result, new RegExp(`<lastmod>${escapedLastmod}</lastmod>`));
+  assert.doesNotMatch(result, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
 });

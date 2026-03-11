@@ -54,6 +54,7 @@ module.exports = [
   },
   {
     date: "2026-03-10",
+    lastmod: "2026-03-10T14:32:00+01:00",
     slug: "2026-03-10-digest",
     archiveTitle: "Дайджест за 10 марта 2026",
     archiveDescription:

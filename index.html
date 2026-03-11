@@ -147,13 +147,6 @@
       border: 1px solid var(--border);
     }
 
-    .mini {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     .latest {
       margin-top: 34px;
       padding-top: 28px;
@@ -217,29 +210,8 @@
       line-height: 1.5;
     }
 
-    .mini-card {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .mini-card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: #e8efff;
-    }
-
-    .mini-card span {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
     @media (max-width: 760px) {
       .card { padding: 26px; border-radius: 22px; }
-      .mini { grid-template-columns: 1fr; }
       .latest-head {
         display: block;
       }
@@ -274,21 +246,6 @@
         <a class="btn btn-secondary" href="/digest/">Перейти в архив</a>
       </div>
 
-      <div class="mini">
-        <div class="mini-card">
-          <strong>Каждый день</strong>
-          <span>Один короткий выпуск с главными AI-новостями.</span>
-        </div>
-        <div class="mini-card">
-          <strong>Без мусора</strong>
-          <span>Только важные модели, исследования, релизы и инструменты.</span>
-        </div>
-        <div class="mini-card">
-          <strong>Удобный формат</strong>
-          <span>Сначала суть, потом подробности — прямо в Telegram.</span>
-        </div>
-      </div>
-
       <section class="latest" aria-labelledby="latest-digests">
         <div class="latest-head">
           <h2 id="latest-digests">Последние выпуски</h2>
@@ -298,12 +255,12 @@
         <div class="latest-list">
           <a class="issue-link" href="/digest/2026-03-11-digest/">
             <strong>11 марта 2026: AI Vibe Digest</strong>
-            <span>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий. Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде. ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</span>
+            <span>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.<br>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.<br>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</span>
           </a>
 
           <a class="issue-link" href="/digest/2026-03-10-digest/">
             <strong>10 марта 2026: AI Vibe Digest</strong>
-            <span>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий. Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде. ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</span>
+            <span>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.<br>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.<br>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</span>
           </a>
         </div>
       </section>

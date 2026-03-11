@@ -8,6 +8,8 @@ const ALTERNATE_SITE_URLS = ["https://aivibedigest.com"];
 const SITE_HOST = new URL(SITE_URL).host;
 const TELEGRAM_URL = "https://t.me/+hEB8EhqtRfoyYjZi";
 const ALLOWED_INLINE_TAGS = new Set(["a", "b", "strong", "i", "em", "code", "br"]);
+const ISO_8601_WITH_OFFSET_PATTERN =
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/;
 
 const sortedIssues = [...issues].sort((a, b) => b.date.localeCompare(a.date));
 
@@ -27,6 +29,10 @@ function writeFile(relativePath, content) {
 
 function issueUrl(issue) {
   return `/digest/${issue.slug}/`;
+}
+
+function getIssueLastmod(issue) {
+  return issue.lastmod ?? issue.date;
 }
 
 function escapeXml(value) {
@@ -180,7 +186,7 @@ function renderHomePage() {
     .map(
       (issue) => `          <a class="issue-link" href="${issueUrl(issue)}">
             <strong>${escapeHtml(issue.latestTitle)}</strong>
-            <span>${escapeHtml(issue.latestDescription)}</span>
+            <span>${issue.summary.slice(0, 3).map(escapeHtml).join("<br>")}</span>
           </a>`
     )
     .join("\n\n");
@@ -334,13 +340,6 @@ function renderHomePage() {
       border: 1px solid var(--border);
     }
 
-    .mini {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     .latest {
       margin-top: 34px;
       padding-top: 28px;
@@ -404,29 +403,8 @@ function renderHomePage() {
       line-height: 1.5;
     }
 
-    .mini-card {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .mini-card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: #e8efff;
-    }
-
-    .mini-card span {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
     @media (max-width: 760px) {
       .card { padding: 26px; border-radius: 22px; }
-      .mini { grid-template-columns: 1fr; }
       .latest-head {
         display: block;
       }
@@ -461,21 +439,6 @@ function renderHomePage() {
         <a class="btn btn-secondary" href="/digest/">Перейти в архив</a>
       </div>
 
-      <div class="mini">
-        <div class="mini-card">
-          <strong>Каждый день</strong>
-          <span>Один короткий выпуск с главными AI-новостями.</span>
-        </div>
-        <div class="mini-card">
-          <strong>Без мусора</strong>
-          <span>Только важные модели, исследования, релизы и инструменты.</span>
-        </div>
-        <div class="mini-card">
-          <strong>Удобный формат</strong>
-          <span>Сначала суть, потом подробности — прямо в Telegram.</span>
-        </div>
-      </div>
-
       <section class="latest" aria-labelledby="latest-digests">
         <div class="latest-head">
           <h2 id="latest-digests">Последние выпуски</h2>
@@ -499,7 +462,7 @@ function renderArchivePage() {
       (issue) => `        <article class="archive-item">
           <time datetime="${issue.date}">${escapeHtml(formatHumanDate(issue.date))}</time>
           <a href="${issueUrl(issue)}">${escapeHtml(issue.archiveTitle)}</a>
-          <p>${escapeHtml(issue.archiveDescription)}</p>
+          <p>${issue.summary.slice(0, 3).map(escapeHtml).join("<br>")}</p>
         </article>`
     )
     .join("\n\n");
@@ -702,9 +665,6 @@ ${archiveItemsMarkup}
 
 function renderIssuePage(issue) {
   const telegramPostUrl = getTelegramPostUrl(issue);
-  const ledeMarkup = issue.lede
-    .map((paragraph) => `        <p>${escapeHtml(paragraph)}</p>`)
-    .join("\n");
   const summaryMarkup = issue.summary
     .map((item) => `          <li>${escapeHtml(item)}</li>`)
     .join("\n");
@@ -829,15 +789,6 @@ ${renderSectionBody(section.body)}
       font-weight: 800;
     }
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: #d3def7;
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
     h1 {
       margin: 0;
       font-size: clamp(34px, 5.6vw, 56px);
@@ -846,15 +797,14 @@ ${renderSectionBody(section.body)}
       max-width: 14ch;
     }
 
-    .lede {
-      margin-top: 24px;
-      display: grid;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 70ch;
+    .tg-top {
+      display: inline-block;
+      margin-top: 18px;
+      color: #8bb8ff;
+      font-size: 15px;
+      text-decoration: none;
     }
+    .tg-top:hover { text-decoration: underline; }
 
     section {
       margin-top: 34px;
@@ -966,12 +916,8 @@ ${renderSectionBody(section.body)}
         </nav>
       </div>
 
-      <span class="eyebrow">${escapeHtml(issue.eyebrow)}</span>
-      <h1>${escapeHtml(issue.pageTitle)}</h1>
-
-      <div class="lede">
-${ledeMarkup}
-      </div>
+      <h1>${escapeHtml(formatHumanDate(issue.date))}</h1>
+      ${telegramPostUrl ? `<a class="tg-top" href="${escapeHtml(telegramPostUrl)}" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>` : ""}
 
       <section aria-labelledby="summary-title">
         <h2 id="summary-title">Кратко главное</h2>
@@ -1009,13 +955,13 @@ ${blocksMarkup}
 }
 
 function renderSitemap() {
-  const latestIssueDate = sortedIssues[0]?.date;
+  const latestIssueLastmod = sortedIssues[0] ? getIssueLastmod(sortedIssues[0]) : null;
   const pages = [
-    { url: `${SITE_URL}/`, lastmod: latestIssueDate },
-    { url: `${SITE_URL}/digest/`, lastmod: latestIssueDate },
+    { url: `${SITE_URL}/`, lastmod: latestIssueLastmod },
+    { url: `${SITE_URL}/digest/`, lastmod: latestIssueLastmod },
     ...sortedIssues.map((issue) => ({
       url: `${SITE_URL}${issueUrl(issue)}`,
-      lastmod: issue.date,
+      lastmod: getIssueLastmod(issue),
     })),
   ];
 
@@ -1076,6 +1022,14 @@ function validateIssues() {
       throw new Error(`Duplicate slug: ${issue.slug}`);
     }
 
+    if (
+      issue.lastmod &&
+      (!ISO_8601_WITH_OFFSET_PATTERN.test(issue.lastmod) ||
+        issue.lastmod.slice(0, 10) !== issue.date)
+    ) {
+      throw new Error(`Invalid lastmod for ${issue.slug}: ${issue.lastmod}`);
+    }
+
     seen.add(issue.slug);
   }
 }
@@ -1100,6 +1054,7 @@ module.exports = {
   build,
   getTelegramPostUrl,
   renderIssuePage,
+  renderSitemap,
   renderSectionBody,
   sanitizeInlineHtml,
 };
