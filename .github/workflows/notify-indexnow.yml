@@ -1,0 +1,39 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/issues.js"
+      - "digest/**"
+      - "index.html"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "dff34df5e139d4e352fe567288233082.txt"
+  workflow_dispatch:
+
+concurrency:
+  group: notify-indexnow-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Wait for live site and notify IndexNow
+        env:
+          WAIT_FOR_LIVE_SITE: "1"
+          LIVE_SITE_TIMEOUT_MS: "600000"
+          LIVE_SITE_POLL_INTERVAL_MS: "10000"
+        run: npm run notify-indexnow

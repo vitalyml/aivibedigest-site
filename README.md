@@ -14,8 +14,8 @@
 ## Команды
 
 ```bash
-npm run build             # Сборка сайта + уведомление IndexNow
-npm run notify-indexnow   # Только уведомление IndexNow (Яндекс, Bing)
+npm run build             # Только сборка сайта
+npm run notify-indexnow   # Ручной запуск уведомления IndexNow
 npm test                  # Запуск тестов
 ```
 
@@ -40,7 +40,9 @@ cat issue.json | node scripts/upsert-issue.js
 - `robots.txt`
 - `{key}.txt` — ключ IndexNow для верификации
 
-После генерации файлов автоматически отправляются URL в Яндекс и Bing через IndexNow.
+Автоматический запуск `notify-indexnow` происходит после push в `main` через GitHub Actions: workflow ждёт,
+пока публичный сайт начнёт отдавать актуальные `index.html`, `sitemap.xml` и файл ключа, и только потом
+отправляет уведомление в IndexNow.
 
 ## SEO
 
