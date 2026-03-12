@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Vibe Digest за 12 марта 2026</title>
+  <meta name="description" content="NVIDIA выпустила открытые модели для автономной работы в терминале — небольшие модели конкурируют с гигантами в инженерных задачах. Google представила мультимодальные эмбеддинги — одна модель обрабатывает текст, видео, PDF и аудио. Claude Opus 4.6 вдвое превзошла конкурентов в тесте на замену человеческого труда — решает задачи на целый рабочий день." />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: rgba(10, 18, 34, 0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.6vw, 56px);
+      line-height: 1;
+      letter-spacing: -.05em;
+      max-width: 14ch;
+    }
+
+    .tg-top {
+      display: inline-block;
+      margin-top: 18px;
+      color: #8bb8ff;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    .tg-top:hover { text-decoration: underline; }
+
+    section {
+      margin-top: 34px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p a,
+    .block p a:visited {
+      color: #9fd0ff;
+      font-weight: 600;
+      text-decoration-color: rgba(159,208,255,.7);
+      text-underline-offset: 0.12em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    .block p a:hover,
+    .block p a:focus-visible {
+      color: #dff1ff;
+      text-decoration-color: currentColor;
+    }
+
+    .block p + p {
+      margin-top: 16px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame {
+        padding: 24px;
+        background: rgba(10, 18, 34, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <h1>12 марта 2026</h1>
+      <a class="tg-top" href="https://t.me/ai_link_vibe/418" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+
+      <section aria-labelledby="summary-title">
+        <h2 id="summary-title">Кратко главное</h2>
+        <ul class="summary">
+          <li>NVIDIA выпустила открытые модели для автономной работы в терминале — небольшие модели конкурируют с гигантами в инженерных задачах.</li>
+          <li>Google представила мультимодальные эмбеддинги — одна модель обрабатывает текст, видео, PDF и аудио.</li>
+          <li>Claude Opus 4.6 вдвое превзошла конкурентов в тесте на замену человеческого труда — решает задачи на целый рабочий день.</li>
+          <li>Perplexity анонсировала постоянно активного локального ИИ-агента — система работает на Mac mini и управляет компьютером.</li>
+          <li>Исследование показало, что плотные слои в LLM работают как скрытые Mixture of Experts — это объясняет эффективность разреженных архитектур.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="details-title">
+        <h2 id="details-title">Подробности по блокам</h2>
+        <div class="blocks">
+          <section class="block">
+            <h3>Дайджест</h3>
+            <p>🤖 Модели и инструменты</p>
+            <p><a href="https://t.me/ai_machinelearning_big_data/9660" target="_blank" rel="noopener noreferrer">Machinelearning</a> рассказывает о семействе моделей NVIDIA Nemotron-Terminal. Эти относительно небольшие модели (от 8 до 32 миллиардов параметров) обучены для автономного выполнения инженерных задач в терминале Linux: от установки зависимостей и отладки кода до настройки окружений. Они показывают результаты, сравнимые с моделями-гигантами в 10 раз больше, благодаря специально собранному датасету из адаптированных и синтетических задач.</p>
+            <p><a href="https://t.me/ai_newz/4467" target="_blank" rel="noopener noreferrer">Эйай ньюз</a> сообщает о выпуске Gemini Embedding 2 от Google. Это первая нативно мультимодальная модель для преобразования данных в числовые векторы: она может одновременно обрабатывать в одном запросе текст, изображения, видео (до 120 секунд), PDF-страницы и аудио без предварительной расшифровки. Это позволяет улавливать смысловые связи между разными форматами данных, например, между картинкой и её описанием.</p>
+            <p><a href="https://t.me/ai_newz/4468" target="_blank" rel="noopener noreferrer">Эйай ньюз</a> пишет о выходе Flash Attention 4 — оптимизированной библиотеке для ускорения вычислений в нейросетях. На этот раз разработчики специально доработали её для новейших GPU архитектуры Blackwell, достигнув значительного прироста скорости по сравнению с предыдущими решениями. Код теперь написан на Python, что ускорило его компиляцию.</p>
+            <p>⚙️ Агенты и практика</p>
+            <p>По <a href="https://t.me/data_secrets/8848" target="_blank" rel="noopener noreferrer">информации Data Secrets</a>, Perplexity представила концепцию Personal Computer — постоянно активной локальной ИИ-системы. Она работает на базе Mac mini, интегрируется с файлами и приложениями пользователя и может автономно выполнять сложные рабочие процессы, продолжая работу даже когда пользователь отошёл.</p>
+            <p><a href="https://t.me/c/1741956568/473" target="_blank" rel="noopener noreferrer">AI и грабли</a> делится личным опытом перехода на Codex Desktop для работы с ИИ-агентами. Автор отмечает, что ключевая часть работы смещается к планированию и ревью: теперь он предварительно «прогоняет» задачи через агента, чтобы тот сам находил потенциальные проблемы и нестыковки в техническом задании, прежде чем приступить к написанию кода.</p>
+            <p>🔬 Исследования и аналитика</p>
+            <p><a href="https://t.me/maxvotek/410" target="_blank" rel="noopener noreferrer">Мысли вслух</a> анализирует свежие результаты независимого тестирования моделей METR. Claude Opus 4.6 показала впечатляющий отрыв: она может с 50% вероятностью решить задачу, на которую опытный специалист потратил бы около 14,5 часов, что более чем вдвое превышает возможности ближайших конкурентов.</p>
+            <p><a href="https://t.me/gonzo_ML/4907" target="_blank" rel="noopener noreferrer">Gonzo-обзоры ML статей</a> рассказывает об исследовании, показавшем, что плотные слои (MLP) внутри больших языковых моделей по своей сути работают как разреженные «смеси экспертов» (Mixture of Experts). Это открытие даёт теоретическое объяснение, почему переход на разреженные архитектуры MoE так эффективен — они просто делают явным то, что уже заложено в модели.</p>
+            <p>🎓 События и инфраструктура</p>
+            <p><a href="https://t.me/ai_machinelearning_big_data/9659" target="_blank" rel="noopener noreferrer">Machinelearning</a> информирует о спецпредложении от Cloud.ru, которое даёт скидки до 40% на инфраструктурные сервисы для запуска и масштабирования AI-проектов, включая аренду GPU и ML-инференс.</p>
+            <p><a href="https://t.me/datafest/921" target="_blank" rel="noopener noreferrer">ODS Events</a> анонсирует митап по компьютерному зрению, который пройдёт 19 марта в Воронеже. В программе — доклады о мультимодальном поиске по видео и о гибридном подходе к распознаванию старинных рукописных текстов с помощью OCR и LLM.</p>
+          </section>
+        </div>
+      </section>
+
+      <section aria-labelledby="cta-title">
+        <h2 id="cta-title">Продолжение</h2>
+        <div class="cta">
+          <a class="nav-link" href="https://t.me/ai_link_vibe/418" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>
