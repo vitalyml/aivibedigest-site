@@ -4,8 +4,6 @@ const issues = require("../data/issues");
 
 const ROOT = path.resolve(__dirname, "..");
 const SITE_URL = "https://www.aivibedigest.com";
-const ALTERNATE_SITE_URLS = ["https://aivibedigest.com"];
-const SITE_HOST = new URL(SITE_URL).host;
 const TELEGRAM_URL = "https://t.me/+hEB8EhqtRfoyYjZi";
 const ALLOWED_INLINE_TAGS = new Set(["a", "b", "strong", "i", "em", "code", "br"]);
 const ISO_8601_WITH_OFFSET_PATTERN =
@@ -200,6 +198,13 @@ function renderHomePage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Vibe Digest — ежедневный AI-дайджест в Telegram</title>
   <meta name="description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
+  <link rel="canonical" href="${SITE_URL}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="AI Vibe Digest" />
+  <meta property="og:title" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram" />
+  <meta property="og:description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
+  <meta property="og:url" content="${SITE_URL}/" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -458,6 +463,18 @@ ${latestMarkup}
       </section>
     </section>
   </main>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107395453', 'ym');
+    ym(107395453, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107395453" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
 `;
@@ -481,6 +498,13 @@ function renderArchivePage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Архив AI Vibe Digest — ежедневные AI-дайджесты</title>
   <meta name="description" content="Архив AI Vibe Digest: ежедневные AI-дайджесты про модели, исследования, релизы и инструменты с переходом на каждый выпуск." />
+  <link rel="canonical" href="${SITE_URL}/digest/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="AI Vibe Digest" />
+  <meta property="og:title" content="Архив AI Vibe Digest — ежедневные AI-дайджесты" />
+  <meta property="og:description" content="Архив AI Vibe Digest: ежедневные AI-дайджесты про модели, исследования, релизы и инструменты с переходом на каждый выпуск." />
+  <meta property="og:url" content="${SITE_URL}/digest/" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -668,6 +692,18 @@ ${archiveItemsMarkup}
       </section>
     </section>
   </main>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107395453', 'ym');
+    ym(107395453, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107395453" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
 `;
@@ -694,6 +730,13 @@ ${renderSectionBody(section.body)}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${escapeHtml(issue.metaTitle)}</title>
   <meta name="description" content="${escapeHtml(issue.metaDescription)}" />
+  <link rel="canonical" href="${SITE_URL}${issueUrl(issue)}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="AI Vibe Digest" />
+  <meta property="og:title" content="${escapeHtml(issue.metaTitle)}" />
+  <meta property="og:description" content="${escapeHtml(issue.metaDescription)}" />
+  <meta property="og:url" content="${SITE_URL}${issueUrl(issue)}" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -959,6 +1002,18 @@ ${blocksMarkup}
       </nav>
     </article>
   </main>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107395453', 'ym');
+    ym(107395453, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107395453" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
 `;
@@ -992,15 +1047,10 @@ ${body}
 }
 
 function renderRobotsTxt() {
-  const sitemapUrls = [SITE_URL, ...ALTERNATE_SITE_URLS].map(
-    (baseUrl) => `${baseUrl}/sitemap.xml`
-  );
-
   return `User-agent: *
 Allow: /
-Host: ${SITE_HOST}
 
-${sitemapUrls.map((url) => `Sitemap: ${url}`).join("\n")}
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 }
 
