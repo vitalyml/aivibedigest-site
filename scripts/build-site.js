@@ -5,6 +5,7 @@ const issues = require("../data/issues");
 const ROOT = path.resolve(__dirname, "..");
 const SITE_URL = "https://www.aivibedigest.com";
 const TELEGRAM_URL = "https://t.me/+hEB8EhqtRfoyYjZi";
+const INDEXNOW_KEY = "dff34df5e139d4e352fe567288233082";
 const ALLOWED_INLINE_TAGS = new Set(["a", "b", "strong", "i", "em", "code", "br"]);
 const ISO_8601_WITH_OFFSET_PATTERN =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/;
@@ -1100,6 +1101,7 @@ function build() {
   writeFile("digest/index.html", renderArchivePage());
   writeFile("sitemap.xml", renderSitemap());
   writeFile("robots.txt", renderRobotsTxt());
+  writeFile(`${INDEXNOW_KEY}.txt`, INDEXNOW_KEY);
 
   for (const issue of sortedIssues) {
     writeFile(path.join("digest", issue.slug, "index.html"), renderIssuePage(issue));
@@ -1117,4 +1119,8 @@ module.exports = {
   renderSitemap,
   renderSectionBody,
   sanitizeInlineHtml,
+  SITE_URL,
+  INDEXNOW_KEY,
+  sortedIssues,
+  issueUrl,
 };
