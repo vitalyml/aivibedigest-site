@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Vibe Digest за 13 марта 2026</title>
+  <meta name="description" content="Разработка платформ для ИИ-агентов набирает обороты. ИИ решает сложные математические задачи и улучшает мультимодальность. Появляются новые инструменты для разработчиков и методы оценки моделей." />
+  <link rel="canonical" href="https://www.aivibedigest.com/digest/2026-03-13-digest/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="AI Vibe Digest" />
+  <meta property="og:title" content="AI Vibe Digest за 13 марта 2026" />
+  <meta property="og:description" content="Разработка платформ для ИИ-агентов набирает обороты. ИИ решает сложные математические задачи и улучшает мультимодальность. Появляются новые инструменты для разработчиков и методы оценки моделей." />
+  <meta property="og:url" content="https://www.aivibedigest.com/digest/2026-03-13-digest/" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: rgba(10, 18, 34, 0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.6vw, 56px);
+      line-height: 1;
+      letter-spacing: -.05em;
+      max-width: 14ch;
+    }
+
+    .tg-top {
+      display: inline-block;
+      margin-top: 18px;
+      color: #8bb8ff;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    .tg-top:hover { text-decoration: underline; }
+
+    section {
+      margin-top: 34px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p a,
+    .block p a:visited {
+      color: #9fd0ff;
+      font-weight: 600;
+      text-decoration-color: rgba(159,208,255,.7);
+      text-underline-offset: 0.12em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    .block p a:hover,
+    .block p a:focus-visible {
+      color: #dff1ff;
+      text-decoration-color: currentColor;
+    }
+
+    .block p + p {
+      margin-top: 16px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame {
+        padding: 24px;
+        background: rgba(10, 18, 34, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <h1>13 марта 2026</h1>
+      <a class="tg-top" href="https://t.me/ai_link_vibe/419" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+
+      <section aria-labelledby="summary-title">
+        <h2 id="summary-title">Кратко главное</h2>
+        <ul class="summary">
+          <li>Разработка платформ для ИИ-агентов набирает обороты.</li>
+          <li>ИИ решает сложные математические задачи и улучшает мультимодальность.</li>
+          <li>Появляются новые инструменты для разработчиков и методы оценки моделей.</li>
+          <li>Инфраструктура для ИИ растёт через инвестиции и стандарты.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="details-title">
+        <h2 id="details-title">Подробности по блокам</h2>
+        <div class="blocks">
+          <section class="block">
+            <h3>Агенты и автономные системы</h3>
+            <p><a href="https://t.me/ai_machinelearning_big_data/9664" target="_blank" rel="noopener noreferrer">Machinelearning</a> рассказывает о перезапуске DeerFlow от ByteDance. Это уже не просто фреймворк, а полноценный рантайм для создания ИИ-агентов, где главный агент разбивает задачу на подзадачи и запускает изолированных суб-агентов в Docker-контейнерах. Система умеет работать с файлами, выполнять команды и запоминает контекст между сессиями.</p>
+            <p>По <a href="https://t.me/ai_machinelearning_big_data/9665" target="_blank" rel="noopener noreferrer">информации Machinelearning</a>, Илон Маск представил проект Macrohard (Digital Optimus) — систему, которая эмулирует работу целой IT-компании. Она сочетает языковую модель Grok и ИИ-агента Tesla, который управляет компьютером, анализируя видео с экрана.</p>
+            <p><a href="https://t.me/cryptoEssay/2899" target="_blank" rel="noopener noreferrer">e/acc</a> делится впечатлениями с роботической выставки в Китае, где десятки производителей показывают гуманоидных роботов, которые уже сейчас умеют играть на рояле, заваривать чай и танцевать. Многие модели доступны для покупки уже в этом году.</p>
+          </section>
+
+          <section class="block">
+            <h3>Исследования и модели</h3>
+            <p><a href="https://t.me/data_secrets/8857" target="_blank" rel="noopener noreferrer">Data Secrets</a> сообщает о прорыве AlphaEvolve от Google DeepMind. Эта система на основе ИИ улучшила нижние оценки для чисел Рамсея — сложнейшей комбинаторной задачи, над которой десятилетиями бились математики. ИИ смог превзойти результаты, полученные вручную.</p>
+            <p><a href="https://t.me/gonzo_ML/4913" target="_blank" rel="noopener noreferrer">Gonzo-обзоры ML статей</a> анализирует исследование о едином бэкбоне для мультимодальных моделей. Оказалось, что если с нуля обучать модель одновременно на тексте и изображениях, она отлично справляется и с пониманием, и с генерацией, а архитектура Mixture of Experts (MoE) хорошо решает проблему разницы в сложности между модальностями.</p>
+            <p><a href="https://t.me/ai_machinelearning_big_data/9665" target="_blank" rel="noopener noreferrer">Machinelearning</a> отмечает, что Anthropic обновила Claude AI: теперь чат-бот может генерировать интерактивные графики и диаграммы прямо внутри диалога, подстраивая визуализацию под контекст разговора.</p>
+          </section>
+
+          <section class="block">
+            <h3>Инструменты и разработка</h3>
+            <p><a href="https://t.me/tips_ai/4620" target="_blank" rel="noopener noreferrer">Tips AI</a> рекомендует огромный репозиторий публичных API, который можно скормить ИИ-агенту, чтобы тот сам нашёл нужные инструменты для решения конкретных задач — от финансов и погоды до машинного обучения.</p>
+            <p><a href="https://t.me/seeallochnaya/3456" target="_blank" rel="noopener noreferrer">Сиолошная</a> рассказывает, как Cursor бенчмаркает модели для написания кода. Компания использует гибридный подход: офлайн-тесты на сложных задачах и онлайн-оценку на реальном трафике, чтобы понять, какие улучшения действительно помогают разработчикам.</p>
+            <p><a href="https://t.me/senior_augur/582" target="_blank" rel="noopener noreferrer">Старший Авгур</a> делится забавным экспериментом, сравнивая, как разные модели справляются с генерацией анимации в Three.js по причудливому промпту (например, с участием Распутина и Шрека).</p>
+            <p><a href="https://t.me/data_secrets/8854" target="_blank" rel="noopener noreferrer">Data Secrets</a> анонсирует AlphaXiv — ленту в стиле Twitter, но для научных статей по ИИ. Сервис позволяет листать популярные исследования с картинками и выводами, а затем переходить к полному тексту или чату с ИИ-ассистентом для обсуждения.</p>
+          </section>
+
+          <section class="block">
+            <h3>Инфраструктура и стандарты</h3>
+            <p><a href="https://t.me/data_secrets/8849" target="_blank" rel="noopener noreferrer">Data Secrets</a> сообщает, что Nvidia инвестирует 2 миллиарда долларов в Nebius Group (бывшую Yandex N.V.) для создания масштабного облака для ИИ-агентов. Партнёры планируют развернуть более 5 ГВт мощностей дата-центров на чипах Nvidia к 2030 году.</p>
+            <p><a href="https://t.me/ai_machinelearning_big_data/9665" target="_blank" rel="noopener noreferrer">Machinelearning</a> пишет, что Китай начал разработку стандартов для автономных ИИ-агентов, таких как OpenClaw. Нормативная база должна решить проблемы безопасности и предсказуемости работы этих систем, установив требования к качеству кода и прозрачности процессов.</p>
+          </section>
+        </div>
+      </section>
+
+      <section aria-labelledby="cta-title">
+        <h2 id="cta-title">Продолжение</h2>
+        <div class="cta">
+          <a class="nav-link" href="https://t.me/ai_link_vibe/419" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107395453', 'ym');
+    ym(107395453, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107395453" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</body>
+</html>
