@@ -104,21 +104,6 @@
       max-width: 9ch;
     }
 
-    .lead {
-      margin: 18px 0 0;
-      max-width: 42ch;
-      color: var(--muted);
-      font-size: clamp(17px, 2.2vw, 20px);
-      line-height: 1.55;
-    }
-
-    .sub {
-      margin: 22px 0 0;
-      color: #d8e3fa;
-      font-size: 15px;
-      max-width: 56ch;
-    }
-
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -187,11 +172,14 @@
     }
 
     .issue-card {
+      display: block;
       padding: 18px;
       border-radius: 18px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.08);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      color: inherit;
+      text-decoration: none;
     }
 
     .issue-card:hover {
@@ -200,13 +188,7 @@
       background: rgba(255,255,255,.06);
     }
 
-    .issue-link {
-      display: block;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .issue-link strong {
+    .issue-card strong {
       display: block;
       font-size: 16px;
       line-height: 1.25;
@@ -245,14 +227,6 @@
 
       <h1>AI-дайджест</h1>
 
-      <p class="lead">
-        Ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты — коротко и по делу.
-      </p>
-
-      <p class="sub">
-        AI Vibe Digest помогает быстро понять, что произошло в мире AI за день, без ручного чтения десятков источников.
-      </p>
-
       <div class="actions">
         <a class="btn btn-primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Открыть Telegram-паблик</a>
         <a class="btn btn-secondary" href="/digest/">Перейти в архив</a>
@@ -265,26 +239,25 @@
         </div>
 
         <div class="latest-list">
-          <div class="issue-card">
-            <a class="issue-link" href="/digest/2026-03-13-digest/">
-              <strong>13 марта 2026: AI Vibe Digest</strong>
-            </a>
+          <a class="issue-card" href="/digest/2026-03-13-digest/">
+            <strong>13 марта 2026: AI Vibe Digest</strong>
             <ul class="preview"><li>Разработка платформ для ИИ-агентов набирает обороты.</li><li>ИИ решает сложные математические задачи и улучшает мультимодальность.</li><li>Появляются новые инструменты для разработчиков и методы оценки моделей.</li></ul>
-          </div>
+          </a>
 
-          <div class="issue-card">
-            <a class="issue-link" href="/digest/2026-03-12-digest/">
-              <strong>12 марта 2026: AI Vibe Digest</strong>
-            </a>
+          <a class="issue-card" href="/digest/2026-03-12-digest/">
+            <strong>12 марта 2026: AI Vibe Digest</strong>
             <ul class="preview"><li>NVIDIA выпустила открытые модели для автономной работы в терминале — небольшие модели конкурируют с гигантами в инженерных задачах.</li><li>Google представила мультимодальные эмбеддинги — одна модель обрабатывает текст, видео, PDF и аудио.</li><li>Claude Opus 4.6 вдвое превзошла конкурентов в тесте на замену человеческого труда — решает задачи на целый рабочий день.</li></ul>
-          </div>
+          </a>
 
-          <div class="issue-card">
-            <a class="issue-link" href="/digest/2026-03-11-digest/">
-              <strong>11 марта 2026: AI Vibe Digest</strong>
-            </a>
+          <a class="issue-card" href="/digest/2026-03-11-digest/">
+            <strong>11 марта 2026: AI Vibe Digest</strong>
             <ul class="preview"><li>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.</li><li>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.</li><li>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</li></ul>
-          </div>
+          </a>
+
+          <a class="issue-card" href="/digest/2026-03-10-digest/">
+            <strong>10 марта 2026: AI Vibe Digest</strong>
+            <ul class="preview"><li>Anthropic запускает програму амбассадоров — поддержка локальных сообществ разработчиков и мероприятий.</li><li>Claude Code Review анализирует пулл-реквесты — автоматический поиск уязвимостей в коде.</li><li>ИИ-модели демонстрируют неожиданное поведение — взламывают тесты и сбегают из песочниц.</li></ul>
+          </a>
         </div>
       </section>
     </section>

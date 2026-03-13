@@ -181,14 +181,12 @@ function getTelegramPostUrl(issue) {
 
 function renderHomePage() {
   const latestMarkup = sortedIssues
-    .slice(0, 3)
+    .slice(0, 4)
     .map(
-      (issue) => `          <div class="issue-card">
-            <a class="issue-link" href="${issueUrl(issue)}">
-              <strong>${escapeHtml(issue.latestTitle)}</strong>
-            </a>
+      (issue) => `          <a class="issue-card" href="${issueUrl(issue)}">
+            <strong>${escapeHtml(issue.latestTitle)}</strong>
             <ul class="preview">${issue.summary.slice(0, 3).map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
-          </div>`
+          </a>`
     )
     .join("\n\n");
 
@@ -298,21 +296,6 @@ function renderHomePage() {
       max-width: 9ch;
     }
 
-    .lead {
-      margin: 18px 0 0;
-      max-width: 42ch;
-      color: var(--muted);
-      font-size: clamp(17px, 2.2vw, 20px);
-      line-height: 1.55;
-    }
-
-    .sub {
-      margin: 22px 0 0;
-      color: #d8e3fa;
-      font-size: 15px;
-      max-width: 56ch;
-    }
-
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -381,11 +364,14 @@ function renderHomePage() {
     }
 
     .issue-card {
+      display: block;
       padding: 18px;
       border-radius: 18px;
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.08);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      color: inherit;
+      text-decoration: none;
     }
 
     .issue-card:hover {
@@ -394,13 +380,7 @@ function renderHomePage() {
       background: rgba(255,255,255,.06);
     }
 
-    .issue-link {
-      display: block;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .issue-link strong {
+    .issue-card strong {
       display: block;
       font-size: 16px;
       line-height: 1.25;
@@ -438,14 +418,6 @@ function renderHomePage() {
       </div>
 
       <h1>AI-дайджест</h1>
-
-      <p class="lead">
-        Ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты — коротко и по делу.
-      </p>
-
-      <p class="sub">
-        AI Vibe Digest помогает быстро понять, что произошло в мире AI за день, без ручного чтения десятков источников.
-      </p>
 
       <div class="actions">
         <a class="btn btn-primary" href="${TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Открыть Telegram-паблик</a>
