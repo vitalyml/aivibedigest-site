@@ -36,7 +36,7 @@ test("renderIssuePage shows Telegram post link when issue contains one", () => {
     telegramPostUrl: "https://t.me/test/123",
   };
 
-  const result = renderIssuePage(issue);
+  const result = renderIssuePage(issue, { prev: null, next: null, nearby: [] });
 
   assert.equal(getTelegramPostUrl(issue), "https://t.me/test/123");
   assert.match(

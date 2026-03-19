@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-site.js",
+    "publish": "node scripts/upsert-issue.js",
     "notify-indexnow": "node scripts/notify-indexnow.js",
     "test": "node --test scripts/build-site.test.js"
   }

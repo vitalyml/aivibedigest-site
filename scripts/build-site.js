@@ -34,6 +34,18 @@ function getIssueLastmod(issue) {
   return issue.lastmod ?? issue.date;
 }
 
+function getIssueIsoPublished(issue) {
+  return `${issue.date}T08:00:00+01:00`;
+}
+
+function getIssueIsoModified(issue) {
+  if (issue.lastmod) {
+    return issue.lastmod;
+  }
+
+  return getIssueIsoPublished(issue);
+}
+
 function escapeXml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -210,6 +222,16 @@ function renderHomePage() {
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
   <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AI Vibe Digest",
+    "url": "${SITE_URL}/",
+    "description": "Ежедневный AI-дайджест: модели, релизы, исследования и инструменты. Коротко и по делу.",
+    "inLanguage": "ru"
+  }
+  </script>
   <style>
     :root {
       --bg: #07111f;
@@ -682,7 +704,8 @@ ${archiveItemsMarkup}
 `;
 }
 
-function renderIssuePage(issue) {
+function renderIssuePage(issue, nav) {
+  const { prev = null, next = null, nearby = [] } = nav || {};
   const telegramPostUrl = getTelegramPostUrl(issue);
   const summaryMarkup = issue.summary
     .map((item) => `          <li>${escapeHtml(item)}</li>`)
@@ -716,6 +739,31 @@ ${renderSectionBody(section.body)}
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
   <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "${escapeHtml(issue.pageTitle)}",
+    "description": "${escapeHtml(issue.metaDescription)}",
+    "datePublished": "${getIssueIsoPublished(issue)}",
+    "dateModified": "${getIssueIsoModified(issue)}",
+    "mainEntityOfPage": "${SITE_URL}${issueUrl(issue)}",
+    "inLanguage": "ru",
+    "author": { "@type": "Organization", "name": "AI Vibe Digest" },
+    "publisher": { "@type": "Organization", "name": "AI Vibe Digest" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "${SITE_URL}/" },
+      { "@type": "ListItem", "position": 2, "name": "Архив", "item": "${SITE_URL}/digest/" },
+      { "@type": "ListItem", "position": 3, "name": "${escapeHtml(issue.pageTitle)}" }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #07111f;
@@ -906,6 +954,59 @@ ${renderSectionBody(section.body)}
       color: white;
     }
 
+    .issue-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .issue-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .issue-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .issue-nav .next {
+      margin-left: auto;
+    }
+
+    .more-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .more-item {
+      display: block;
+      padding: 18px 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .more-item:hover {
+      border-color: var(--accent);
+    }
+
+    .more-item time {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .more-item span {
+      font-weight: 600;
+    }
+
     .footer-nav {
       display: flex;
       flex-wrap: wrap;
@@ -967,6 +1068,21 @@ ${blocksMarkup}
           <a href="/digest/">Перейти в архив AI Vibe Digest</a>
         </div>
       </section>
+${prev || next ? `
+      <nav class="issue-nav" aria-label="Навигация между выпусками">
+        ${prev ? `<a href="${issueUrl(prev)}">\u2190 ${escapeHtml(formatHumanDate(prev.date))}</a>` : ""}
+        ${next ? `<a class="next" href="${issueUrl(next)}">${escapeHtml(formatHumanDate(next.date))} \u2192</a>` : ""}
+      </nav>` : ""}
+${nearby.length > 0 ? `
+      <section aria-labelledby="more-title">
+        <h2 id="more-title">Ещё выпуски</h2>
+        <div class="more-list">
+${nearby.map((n) => `          <a class="more-item" href="${issueUrl(n)}">
+            <time datetime="${n.date}">${escapeHtml(formatHumanDate(n.date))}</time>
+            <span>${escapeHtml(n.archiveTitle)}</span>
+          </a>`).join("\n")}
+        </div>
+      </section>` : ""}
 
       <nav class="footer-nav" aria-label="Нижняя навигация">
         <a href="/">На главную</a>
@@ -1047,6 +1163,43 @@ function formatHumanDate(value) {
   return `${day} ${monthNames[month - 1]} ${year}`;
 }
 
+function getNearbyIssues(issues, currentIndex, count) {
+  const prevSlug = issues[currentIndex - 1]?.slug;
+  const nextSlug = issues[currentIndex + 1]?.slug;
+  const result = [];
+
+  for (let offset = 1; result.length < count; offset++) {
+    const before = currentIndex - offset;
+    const after = currentIndex + offset;
+
+    if (before < 0 && after >= issues.length) {
+      break;
+    }
+
+    if (before >= 0) {
+      const candidate = issues[before];
+
+      if (candidate.slug !== prevSlug && candidate.slug !== nextSlug) {
+        result.push(candidate);
+      }
+    }
+
+    if (result.length >= count) {
+      break;
+    }
+
+    if (after < issues.length) {
+      const candidate = issues[after];
+
+      if (candidate.slug !== prevSlug && candidate.slug !== nextSlug) {
+        result.push(candidate);
+      }
+    }
+  }
+
+  return result.slice(0, count);
+}
+
 function validateIssues() {
   const seen = new Set();
 
@@ -1075,8 +1228,15 @@ function build() {
   writeFile("robots.txt", renderRobotsTxt());
   writeFile(`${INDEXNOW_KEY}.txt`, INDEXNOW_KEY);
 
-  for (const issue of sortedIssues) {
-    writeFile(path.join("digest", issue.slug, "index.html"), renderIssuePage(issue));
+  for (let i = 0; i < sortedIssues.length; i++) {
+    const issue = sortedIssues[i];
+    const nav = {
+      prev: sortedIssues[i - 1] || null,
+      next: sortedIssues[i + 1] || null,
+      nearby: getNearbyIssues(sortedIssues, i, 3),
+    };
+
+    writeFile(path.join("digest", issue.slug, "index.html"), renderIssuePage(issue, nav));
   }
 }
 

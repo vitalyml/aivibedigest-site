@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const ISSUES_PATH = path.join(ROOT, "data", "issues.js");
@@ -265,6 +266,11 @@ async function main() {
   validateUniqueSlugs(sortedIssues);
 
   writeFileAtomically(ISSUES_PATH, renderIssuesModule(sortedIssues));
+
+  execFileSync(process.execPath, [path.join(__dirname, "build-site.js")], {
+    cwd: ROOT,
+    stdio: "inherit",
+  });
 
   console.log(
     JSON.stringify(
