@@ -208,14 +208,20 @@ function renderHomePage() {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Vibe Digest — ежедневный AI-дайджест в Telegram</title>
-  <meta name="description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
+  <meta name="description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты из мира искусственного интеллекта. Коротко, по делу и каждый день." />
   <link rel="canonical" href="${SITE_URL}/" />
+  <link rel="alternate" hreflang="ru" href="${SITE_URL}/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
   <meta property="og:site_name" content="AI Vibe Digest" />
   <meta property="og:title" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram" />
-  <meta property="og:description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты. Коротко и по делу." />
+  <meta property="og:description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты из мира искусственного интеллекта. Коротко, по делу и каждый день." />
   <meta property="og:url" content="${SITE_URL}/" />
+  <meta property="og:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram" />
+  <meta name="twitter:description" content="AI Vibe Digest — ежедневный AI-дайджест в Telegram: модели, релизы, исследования и инструменты из мира искусственного интеллекта. Коротко, по делу и каждый день." />
+  <meta name="twitter:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -492,14 +498,20 @@ function renderArchivePage() {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Архив AI Vibe Digest — ежедневные AI-дайджесты</title>
-  <meta name="description" content="Архив AI Vibe Digest: ежедневные AI-дайджесты про модели, исследования, релизы и инструменты с переходом на каждый выпуск." />
+  <meta name="description" content="Архив AI Vibe Digest: все ежедневные AI-дайджесты про модели, исследования, релизы и инструменты. Выбирайте выпуск и читайте полную версию прямо на сайте." />
   <link rel="canonical" href="${SITE_URL}/digest/" />
+  <link rel="alternate" hreflang="ru" href="${SITE_URL}/digest/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
   <meta property="og:site_name" content="AI Vibe Digest" />
   <meta property="og:title" content="Архив AI Vibe Digest — ежедневные AI-дайджесты" />
-  <meta property="og:description" content="Архив AI Vibe Digest: ежедневные AI-дайджесты про модели, исследования, релизы и инструменты с переходом на каждый выпуск." />
+  <meta property="og:description" content="Архив AI Vibe Digest: все ежедневные AI-дайджесты про модели, исследования, релизы и инструменты. Выбирайте выпуск и читайте полную версию прямо на сайте." />
   <meta property="og:url" content="${SITE_URL}/digest/" />
+  <meta property="og:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Архив AI Vibe Digest — ежедневные AI-дайджесты" />
+  <meta name="twitter:description" content="Архив AI Vibe Digest: все ежедневные AI-дайджесты про модели, исследования, релизы и инструменты. Выбирайте выпуск и читайте полную версию прямо на сайте." />
+  <meta name="twitter:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -733,6 +745,14 @@ ${renderSectionBody(section.body)}
   <meta property="og:title" content="${escapeHtml(issue.metaTitle)}" />
   <meta property="og:description" content="${escapeHtml(issue.metaDescription)}" />
   <meta property="og:url" content="${SITE_URL}${issueUrl(issue)}" />
+  <meta property="og:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
+  <meta property="article:published_time" content="${getIssueIsoPublished(issue)}" />
+  <meta property="article:modified_time" content="${getIssueIsoModified(issue)}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="${escapeHtml(issue.metaTitle)}" />
+  <meta name="twitter:description" content="${escapeHtml(issue.metaDescription)}" />
+  <meta name="twitter:image" content="${SITE_URL}/assets/favicon/android-chrome-512x512.png" />
+  <link rel="alternate" hreflang="ru" href="${SITE_URL}${issueUrl(issue)}" />
   <meta name="theme-color" content="#0b1020" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -1043,7 +1063,7 @@ ${renderSectionBody(section.body)}
         </nav>
       </div>
 
-      <h1>${escapeHtml(formatHumanDate(issue.date))}</h1>
+      <h1>${escapeHtml(issue.pageTitle || formatHumanDate(issue.date))}</h1>
       ${telegramPostUrl ? `<a class="tg-top" href="${escapeHtml(telegramPostUrl)}" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>` : ""}
 
       <section aria-labelledby="summary-title">
