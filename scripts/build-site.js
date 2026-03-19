@@ -359,6 +359,13 @@ function renderHomePage() {
       border: 1px solid var(--border);
     }
 
+    .about {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
     .latest {
       margin-top: 34px;
       padding-top: 28px;
@@ -451,6 +458,8 @@ function renderHomePage() {
         <a class="btn btn-primary" href="${TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Открыть Telegram-паблик</a>
         <a class="btn btn-secondary" href="/digest/">Перейти в архив</a>
       </div>
+
+      <p class="about">Ежедневный дайджест новостей из мира искусственного интеллекта. Каждый выпуск — сжатый обзор за день: новые модели, релизы, исследования и инструменты. Источники — профильные Telegram-каналы, официальные блоги компаний и технические медиа. Выходит каждый будний день.</p>
 
       <section class="latest" aria-labelledby="latest-digests">
         <div class="latest-head">
