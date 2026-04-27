@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Vibe Digest за 27 апреля 2026</title>
+  <meta name="description" content="Новые принципы промптинга для GPT-5.5 — OpenAI советует убирать детальные инструкции и давать модели только цель с ограничениями. Глубокий кэш DeepSeek подешевел в 10 раз — повторные запросы почти бесплатны, экономика агентов и RAG резко меняется. AI-кодинг без системного подхода ведёт к хаосу — Тимур Хахалев объясняет, как правильно дебажить и не теряться в чужом коде." />
+  <link rel="canonical" href="https://www.aivibedigest.com/digest/2026-04-27-digest/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="AI Vibe Digest" />
+  <meta property="og:title" content="AI Vibe Digest за 27 апреля 2026" />
+  <meta property="og:description" content="Новые принципы промптинга для GPT-5.5 — OpenAI советует убирать детальные инструкции и давать модели только цель с ограничениями. Глубокий кэш DeepSeek подешевел в 10 раз — повторные запросы почти бесплатны, экономика агентов и RAG резко меняется. AI-кодинг без системного подхода ведёт к хаосу — Тимур Хахалев объясняет, как правильно дебажить и не теряться в чужом коде." />
+  <meta property="og:url" content="https://www.aivibedigest.com/digest/2026-04-27-digest/" />
+  <meta property="og:image" content="https://www.aivibedigest.com/assets/favicon/android-chrome-512x512.png" />
+  <meta property="article:published_time" content="2026-04-27T08:00:00+01:00" />
+  <meta property="article:modified_time" content="2026-04-27T08:00:00+01:00" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Vibe Digest за 27 апреля 2026" />
+  <meta name="twitter:description" content="Новые принципы промптинга для GPT-5.5 — OpenAI советует убирать детальные инструкции и давать модели только цель с ограничениями. Глубокий кэш DeepSeek подешевел в 10 раз — повторные запросы почти бесплатны, экономика агентов и RAG резко меняется. AI-кодинг без системного подхода ведёт к хаосу — Тимур Хахалев объясняет, как правильно дебажить и не теряться в чужом коде." />
+  <meta name="twitter:image" content="https://www.aivibedigest.com/assets/favicon/android-chrome-512x512.png" />
+  <link rel="alternate" hreflang="ru" href="https://www.aivibedigest.com/digest/2026-04-27-digest/" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI Vibe Digest за 27 апреля 2026",
+    "description": "Новые принципы промптинга для GPT-5.5 — OpenAI советует убирать детальные инструкции и давать модели только цель с ограничениями. Глубокий кэш DeepSeek подешевел в 10 раз — повторные запросы почти бесплатны, экономика агентов и RAG резко меняется. AI-кодинг без системного подхода ведёт к хаосу — Тимур Хахалев объясняет, как правильно дебажить и не теряться в чужом коде.",
+    "datePublished": "2026-04-27T08:00:00+01:00",
+    "dateModified": "2026-04-27T08:00:00+01:00",
+    "mainEntityOfPage": "https://www.aivibedigest.com/digest/2026-04-27-digest/",
+    "inLanguage": "ru",
+    "author": { "@type": "Organization", "name": "AI Vibe Digest" },
+    "publisher": { "@type": "Organization", "name": "AI Vibe Digest" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://www.aivibedigest.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Архив", "item": "https://www.aivibedigest.com/digest/" },
+      { "@type": "ListItem", "position": 3, "name": "AI Vibe Digest за 27 апреля 2026" }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1324;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b4c1d9;
+      --accent: #61a8ff;
+      --accent2: #7d5cff;
+      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,92,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(97,168,255,.16), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      padding: 32px 20px 60px;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .frame {
+      background: rgba(10, 18, 34, 0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar a,
+    .cta a,
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link,
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(97,168,255,.28);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.6vw, 56px);
+      line-height: 1;
+      letter-spacing: -.05em;
+      max-width: 14ch;
+    }
+
+    .tg-top {
+      display: inline-block;
+      margin-top: 18px;
+      color: #8bb8ff;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    .tg-top:hover { text-decoration: underline; }
+
+    section {
+      margin-top: 34px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .summary {
+      margin: 0;
+      padding-left: 20px;
+      color: #dbe6fb;
+      line-height: 1.8;
+    }
+
+    .blocks {
+      display: grid;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .block h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .block p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .block p a,
+    .block p a:visited {
+      color: #9fd0ff;
+      font-weight: 600;
+      text-decoration-color: rgba(159,208,255,.7);
+      text-underline-offset: 0.12em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    .block p a:hover,
+    .block p a:focus-visible {
+      color: #dff1ff;
+      text-decoration-color: currentColor;
+    }
+
+    .block p + p {
+      margin-top: 16px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cta .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      box-shadow: 0 14px 34px rgba(97,168,255,.24);
+      color: white;
+    }
+
+    .issue-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .issue-nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .issue-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .issue-nav .next {
+      margin-left: auto;
+    }
+
+    .more-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .more-item {
+      display: block;
+      padding: 18px 22px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .more-item:hover {
+      border-color: var(--accent);
+    }
+
+    .more-item time {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .more-item span {
+      font-weight: 600;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 760px) {
+      .frame {
+        padding: 24px;
+        background: rgba(10, 18, 34, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .topbar { display: block; }
+      .topbar nav { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="frame">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">AI</span>
+          <span>AI Vibe Digest</span>
+        </div>
+
+        <nav aria-label="Навигация выпуска">
+          <a class="nav-link" href="/">Главная</a>
+          <a class="nav-link" href="/digest/">Архив</a>
+          <a class="nav-link" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </nav>
+      </div>
+
+      <h1>AI Vibe Digest за 27 апреля 2026</h1>
+      <a class="tg-top" href="https://t.me/ai_link_vibe/467" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+
+      <section aria-labelledby="summary-title">
+        <h2 id="summary-title">Кратко главное</h2>
+        <ul class="summary">
+          <li>Новые принципы промптинга для GPT-5.5 — OpenAI советует убирать детальные инструкции и давать модели только цель с ограничениями.</li>
+          <li>Глубокий кэш DeepSeek подешевел в 10 раз — повторные запросы почти бесплатны, экономика агентов и RAG резко меняется.</li>
+          <li>AI-кодинг без системного подхода ведёт к хаосу — Тимур Хахалев объясняет, как правильно дебажить и не теряться в чужом коде.</li>
+          <li>Завтра (28.04.2026) стартует лаборатория x26 по AI-креативу — четыре модальности, практические проекты и защита в конце мая.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="details-title">
+        <h2 id="details-title">Подробности по блокам</h2>
+        <div class="blocks">
+          <section class="block">
+            <h3>Инструменты и API</h3>
+            <p><a href="https://t.me/ai_machinelearning_big_data/10001" target="_blank" rel="noopener noreferrer">Machinelearning</a> разбирает свежий гайд OpenAI по промптингу GPT-5.5. Модель стала эффективнее рассуждать, поэтому старые сценарии с пошаговыми инструкциями сужают ей пространство поиска и дают механические ответы. Теперь советуют описывать целевой результат, критерии успеха и ограничения, а путь пусть ищет сама. Жёсткие «ALLWAYS/NEVER» — только для настоящих инвариантов вроде безопасности и обязательных полей вывода. Добавлены понятия retrieval budgets (сколько поисковых вызовов тратить) и preambles — коротких апдейтов для стриминговых интерфейсов, которые сокращают воспринимаемую задержку. Переписывать всё вручную не надо — OpenAI выложила Skill для Codex, который адаптирует промпты одной командой.</p>
+            <p>По <a href="https://t.me/ai_machinelearning_big_data/9999" target="_blank" rel="noopener noreferrer">информации Machinelearning</a>, DeepSeek снизила цену кэш-хитов на входе до 10% от прежней по всей линейке API. Теперь всё, что вы повторно прогоняете через модель (системный промпт, инструкции агента, история чата, большой документ), оплачивается по копеечному тарифу. Для агентов и RAG-систем это переворачивает экономику: можно держать жирный контекст, не считая каждый токен, и при этом ещё действует скидка 75% на V4-Pro.</p>
+          </section>
+
+          <section class="block">
+            <h3>Исследования и интерпретируемость</h3>
+            <p><a href="https://t.me/gonzo_ML/5260" target="_blank" rel="noopener noreferrer">gonzo-обзоры ML статей</a> рассказывают о гипотезе линейных центроидов (Linear Centroids Hypothesis). Вместо привычного анализа активаций как направлений в латентном пространстве авторы предлагают искать признаки нейросети, опираясь на геометрию того, как модель преобразует вход. Вычисляя «центроиды» через якобиан входа-выхода, метод находит более чистые словари фичей, почти не подвержен паразитным (spurious) корреляциям. Для практиков это drop-in замена латентным активациям: резко повышается устойчивость линейных проб на out-of-distribution данных и естественно связываются фичи с функциональными схемами на разных слоях.</p>
+          </section>
+
+          <section class="block">
+            <h3>AI в разработке</h3>
+            <p><a href="https://t.me/the_ai_architect/292" target="_blank" rel="noopener noreferrer">Тимур Хахалев про AI Coding</a> обращает внимание на синдром разработчика, ставшего лидом: AI уже справляется с деталями, а человек продолжает копаться в запятых, вместо того чтобы мыслить на уровне архитектуры.</p>
+            <p>В <a href="https://t.me/the_ai_architect/291" target="_blank" rel="noopener noreferrer">соседнем посте</a> он разбирает типичную жалобу на невозможность быстро разобраться в AI-коде при продакшен-баге. Решение — не лезть в исходники по старой памяти, а скормить AI-агенту все свидетельства ошибки и дать пять минут на анализ. Системный подход требует хотя бы оглавления проекта (table of contents) в удобном для агента виде, чтобы тот ориентировался по коду. Современные модели уже умеют находить баги или спорные решения, если дать достаточно контекста.</p>
+          </section>
+
+          <section class="block">
+            <h3>AI для творчества</h3>
+            <p><a href="https://t.me/cryptoEssay/2974" target="_blank" rel="noopener noreferrer">e/acc и AI Mindset</a> запускают лабораторию x26 — четырёхнедельный интенсив по созданию AI-инструментов в четырёх модальностях: текст, визуал, звук, код. 11 спикеров, практика с первого дня и публичный demo-день 25 мая. Участники собирают инструмент «которого до тебя не было» — от персонального контент-графа до агентно-музыкальных workflow. Старт завтра (28.04.2026), 27 апреля; подробная программа на сайте.</p>
+          </section>
+        </div>
+      </section>
+
+      <section aria-labelledby="cta-title">
+        <h2 id="cta-title">Продолжение</h2>
+        <div class="cta">
+          <a class="nav-link" href="https://t.me/ai_link_vibe/467" target="_blank" rel="noopener noreferrer">Открыть пост выпуска в Telegram</a>
+          <a class="primary" href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">Читать новые выпуски в Telegram</a>
+          <a href="/digest/">Перейти в архив AI Vibe Digest</a>
+        </div>
+      </section>
+
+      <nav class="issue-nav" aria-label="Навигация между выпусками">
+        
+        <a class="next" href="/digest/2026-04-25-digest/">25 апреля 2026 →</a>
+      </nav>
+
+      <section aria-labelledby="more-title">
+        <h2 id="more-title">Ещё выпуски</h2>
+        <div class="more-list">
+          <a class="more-item" href="/digest/2026-04-24-digest/">
+            <time datetime="2026-04-24">24 апреля 2026</time>
+            <span>Дайджест за 24 апреля 2026</span>
+          </a>
+          <a class="more-item" href="/digest/2026-04-23-digest/">
+            <time datetime="2026-04-23">23 апреля 2026</time>
+            <span>Дайджест за 23 апреля 2026</span>
+          </a>
+          <a class="more-item" href="/digest/2026-04-22-digest/">
+            <time datetime="2026-04-22">22 апреля 2026</time>
+            <span>Дайджест за 22 апреля 2026</span>
+          </a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Нижняя навигация">
+        <a href="/">На главную</a>
+        <a href="/digest/">К архиву</a>
+        <a href="https://t.me/+hEB8EhqtRfoyYjZi" target="_blank" rel="noopener noreferrer">В Telegram</a>
+      </nav>
+    </article>
+  </main>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107395453', 'ym');
+    ym(107395453, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107395453" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</body>
+</html>
